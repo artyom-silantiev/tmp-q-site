@@ -1,14 +1,20 @@
+<script setup lang="ts">
+import { onMounted, onBeforeMount } from 'vue';
+
+if (process.env.SERVER) {
+  console.log('is server');
+} else {
+  console.log('is client');
+}
+
+onBeforeMount(() => {
+  console.log('App onBeforeMount');
+});
+onMounted(() => {
+  console.log('App onMounted');
+});
+</script>
+
 <template>
   <router-view />
 </template>
-
-<script setup lang="ts">
-import { onMounted } from 'vue';
-
-console.log('Is server', process.env.SERVER);
-console.log('Is client', process.env.CLIENT);
-
-onMounted(() => {
-  console.log('Hello, world!');
-});
-</script>
