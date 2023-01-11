@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePageMeta } from 'src/lib/common';
+import { usePageMeta } from 'src/lib/page_meta';
 
 usePageMeta({
   title: 'Page not found',

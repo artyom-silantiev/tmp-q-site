@@ -9,7 +9,7 @@ async function getRandomNumber(): Promise<number> {
 </script>
 <script setup lang="ts">
 import { ref, onMounted, onBeforeMount, onUnmounted } from 'vue';
-import { usePageMeta } from 'src/lib/common';
+import { usePageMeta } from 'src/lib/page_meta';
 
 usePageMeta({
   title: 'Page Two',
