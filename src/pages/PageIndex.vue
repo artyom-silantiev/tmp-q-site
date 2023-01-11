@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { useMeta } from 'quasar';
-useMeta({
-  title: 'Index Page',
-});
+import { usePageMeta } from 'src/lib/common';
+
+usePageMeta();
 </script>
 
 <template>

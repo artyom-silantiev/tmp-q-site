@@ -9,10 +9,9 @@ async function getRandomNumber(): Promise<number> {
 </script>
 <script setup lang="ts">
 import { ref, onMounted, onBeforeMount, onUnmounted } from 'vue';
-import { useMeta } from 'quasar';
-import AsyncHelloComponent from '../components/AsyncHelloComponent.vue';
+import { usePageMeta } from 'src/lib/common';
 
-useMeta({
+usePageMeta({
   title: 'Page Two',
 });
 
@@ -36,6 +35,5 @@ onUnmounted(() => {
     <div>Is Page Two!</div>
     <div>Random number one (async data): {{ randomNumberOne }}</div>
     <div>Random number two (async data): {{ randomNumberTwo }}</div>
-    <AsyncHelloComponent name="User" :sleep="3000" />
   </q-page>
 </template>

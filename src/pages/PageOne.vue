@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import HelloComponent from '../components/HelloComponent.vue';
-import { useMeta } from 'quasar';
+import { usePageMeta } from 'src/lib/common';
 
-useMeta({
+usePageMeta({
   title: 'Page One',
 });
 </script>
