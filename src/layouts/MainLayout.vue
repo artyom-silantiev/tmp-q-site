@@ -1,3 +1,25 @@
+<script setup lang="ts">
+import { onErrorCaptured, ref, onMounted } from 'vue';
+import { onBeforeRouteUpdate } from 'vue-router';
+
+const isError = ref(false);
+const leftDrawerOpen = ref(false);
+
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+}
+
+onErrorCaptured((error) => {
+  console.log('onErrorCaptured', error);
+  isError.value = true;
+});
+
+onBeforeRouteUpdate(() => {
+  console.log('onBeforeRouteUpdate');
+  isError.value = false;
+});
+</script>
+
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
@@ -32,22 +54,7 @@
     </q-drawer>
 
     <q-page-container>
-      <Suspense>
-        <router-view />
-
-        <template #fallback>
-          <div class="row items-center">Loading...</div>
-        </template>
-      </Suspense>
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-const leftDrawerOpen = ref(false);
-
-function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-}
-</script>

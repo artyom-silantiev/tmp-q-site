@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import HelloComponent from '../components/HelloComponent.vue';
-import { usePageMeta } from 'src/lib/page_meta';
+import { ref, onErrorCaptured } from 'vue';
+import AsyncPage from './PageOneAsync.vue';
 
-usePageMeta({
-  title: 'Page One',
+const isError = ref(false);
+
+onErrorCaptured((error) => {
+  console.log('onErrorCaptured', error);
+  isError.value = true;
 });
 </script>
 
 <template>
-  <q-page class="row items-center justify-evenly">
-    <div>Is Page One!</div>
-    <div>
-      <HelloComponent name="User" />
-    </div>
-  </q-page>
+  <div v-if="isError">Load error</div>
+  <Suspense v-else>
+    <AsyncPage />
+
+    <template #fallback> Loading... </template>
+  </Suspense>
 </template>
