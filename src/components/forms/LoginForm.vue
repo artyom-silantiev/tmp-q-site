@@ -9,8 +9,6 @@ const form = createLoginForm();
 async function onSubmit() {
   try {
     const res = await form.submit();
-    console.log('res', res);
-
     await useAuthStore().setToken(res.data.accessToken);
     $router.push('/profile');
   } catch (error) {
