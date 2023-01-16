@@ -12,7 +12,7 @@ async function onSubmit() {
     console.log('res', res);
 
     await useAuthStore().setToken(res.data.accessToken);
-    $router.push('/user/profile');
+    $router.push('/profile');
   } catch (error) {
     console.log(error);
   }

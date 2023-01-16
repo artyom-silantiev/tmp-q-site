@@ -12,7 +12,7 @@ usePageMeta({
 </script>
 
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page class="q-ma-md">
     <div>Is Page One!</div>
     <div>
       <HelloComponent name="User" />

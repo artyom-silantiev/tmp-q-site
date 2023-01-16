@@ -19,7 +19,7 @@ async function logout() {
 </script>
 
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page class="q-ma-md">
     <div>Profile page</div>
     <div>User id: {{ user?.id }}</div>
     <div>User role: {{ user?.role }}</div>

@@ -8,7 +8,7 @@ usePageMeta({
 </script>
 
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page class="q-ma-md">
     <LoginForm />
   </q-page>
 </template>
