@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeMount } from 'vue';
+import { useAuthStore } from './stores/auth';
 
 if (process.env.SERVER) {
   console.log('is server');
@@ -7,7 +8,8 @@ if (process.env.SERVER) {
   console.log('is client');
 }
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
+  await useAuthStore().init();
   console.log('App onBeforeMount');
 });
 onMounted(() => {

@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import { ref, onErrorCaptured } from 'vue';
-import AsyncPage from './PageTwoAsync.vue';
-
+import { ref } from 'vue';
+import AsyncPage from './ProfilePageAsync.vue';
 const isError = ref(false);
-
-onErrorCaptured((error) => {
-  console.log('onErrorCaptured', error);
-  isError.value = true;
-});
 </script>
 
 <template>

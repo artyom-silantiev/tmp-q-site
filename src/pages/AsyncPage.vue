@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, onErrorCaptured } from 'vue';
-import AsyncPage from './PageOneAsync.vue';
-
+import { ref } from 'vue';
+import AsyncPage from './AsyncPageAsync.vue';
 const isError = ref(false);
 </script>
 

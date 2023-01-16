@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { useAuthStore } from 'src/stores/auth';
 import { ref } from 'vue';
+
+const authStore = useAuthStore();
+const { isAuth } = authStore.toRefs();
 
 const leftDrawerOpen = ref(false);
 
@@ -32,12 +36,13 @@ function toggleLeftDrawer() {
         <q-item to="/">
           <q-item-label>Index</q-item-label>
         </q-item>
-        <q-item to="/one">
-          <q-item-label>Page One</q-item-label>
+        <q-item to="/login" v-if="!isAuth">
+          <q-item-label>Login</q-item-label>
         </q-item>
-        <q-item to="/two">
-          <q-item-label>Page Two</q-item-label>
+        <q-item to="/user/profile" v-if="isAuth">
+          <q-item-label>Profile</q-item-label>
         </q-item>
+        {{ isAuth }}
       </q-list>
     </q-drawer>
 

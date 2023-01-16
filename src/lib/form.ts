@@ -25,15 +25,15 @@ export class Form<R, T extends FormModel> {
   }
 
   async submit() {
-    console.log('submit');
-
     this.clearErrors();
     this.busy.value = true;
 
     try {
       const res = await this.submitHandler(this.model);
+      this.busy.value = false;
       return res;
     } catch (error) {
+      this.busy.value = false;
       this.hasError.value = true;
 
       if (axios.isAxiosError(error) && error.response) {
@@ -47,9 +47,9 @@ export class Form<R, T extends FormModel> {
           this.fieldsHasErrors.value = errorData.fieldsHasErrors as FieldsHasErrors;
         }
       }
-    }
 
-    this.busy.value = false;
+      throw error;
+    }
   }
 
   isErrorField(fieldName: string) {

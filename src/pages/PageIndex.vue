@@ -6,8 +6,6 @@ usePageMeta();
 
 <template>
   <q-page class="row items-center justify-evenly">
-    <router-link to="/one">Page One</router-link>
-    <router-link to="/two">Page Two</router-link>
     <router-link to="/login">Login</router-link>
   </q-page>
 </template>

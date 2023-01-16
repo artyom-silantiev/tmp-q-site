@@ -1,10 +1,21 @@
 <script setup lang="ts">
 import { createLoginForm } from 'src/models/guest';
+import { useAuthStore } from 'src/stores/auth';
+import { useRouter } from 'vue-router';
 
+const $router = useRouter();
 const form = createLoginForm();
 
 async function onSubmit() {
-  const res = await form.submit();
+  try {
+    const res = await form.submit();
+    console.log('res', res);
+
+    await useAuthStore().setToken(res.data.accessToken);
+    $router.push('/user/profile');
+  } catch (error) {
+    console.log(error);
+  }
 }
 function onReset() {
   form.resetModel();
