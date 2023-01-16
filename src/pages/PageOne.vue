@@ -3,11 +3,6 @@ import { ref, onErrorCaptured } from 'vue';
 import AsyncPage from './PageOneAsync.vue';
 
 const isError = ref(false);
-
-onErrorCaptured((error) => {
-  console.log('onErrorCaptured', error);
-  isError.value = true;
-});
 </script>
 
 <template>

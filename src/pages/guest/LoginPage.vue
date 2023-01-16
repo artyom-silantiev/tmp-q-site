@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { usePageMeta } from 'src/lib/page_meta';
+import LoginForm from 'src/components/forms/LoginForm.vue';
 
-usePageMeta();
+usePageMeta({
+  title: 'Login page',
+});
 </script>
 
 <template>
   <q-page class="row items-center justify-evenly">
-    <router-link to="/one">Page One</router-link>
-    <router-link to="/two">Page Two</router-link>
-    <router-link to="/login">Login</router-link>
+    <LoginForm />
   </q-page>
 </template>

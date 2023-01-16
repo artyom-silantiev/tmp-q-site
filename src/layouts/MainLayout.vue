@@ -1,23 +1,11 @@
 <script setup lang="ts">
-import { onErrorCaptured, ref, onMounted } from 'vue';
-import { onBeforeRouteUpdate } from 'vue-router';
+import { ref } from 'vue';
 
-const isError = ref(false);
 const leftDrawerOpen = ref(false);
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
-
-onErrorCaptured((error) => {
-  console.log('onErrorCaptured', error);
-  isError.value = true;
-});
-
-onBeforeRouteUpdate(() => {
-  console.log('onBeforeRouteUpdate');
-  isError.value = false;
-});
 </script>
 
 <template>
