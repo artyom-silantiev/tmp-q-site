@@ -3,13 +3,12 @@ FROM node:16-alpine
 WORKDIR /usr/src/app
 
 COPY package*.json ./
+COPY yarn.lock ./
 
-RUN npm install
+RUN yarn
 
 COPY . .
 
-RUN npx quasar build -m ssr
-
 EXPOSE 3300
 
-CMD ["node", "dist/ssr/index.js"]
+CMD ["sh", "_run_app.sh"]
