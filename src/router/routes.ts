@@ -17,10 +17,6 @@ const routes: RouteRecordRaw[] = [
           guards: [NotAuthGuard()],
         },
       },
-      {
-        path: 'profile',
-        component: () => import('pages/user/ProfilePage.vue'),
-      },
     ],
   },
   {
