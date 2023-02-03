@@ -11,6 +11,8 @@
 const { configure } = require('quasar/wrappers');
 const path = require('path');
 const env = require('dotenv').config().parsed;
+const fs = require('fs');
+const isDockerEnv = fs.existsSync('/.dockerenv');
 
 console.log('env', env);
 
@@ -91,17 +93,22 @@ module.exports = configure(function (/* ctx */) {
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
-    devServer: {
-      // https: true
-      open: true, // opens browser window automatically
-      proxy: {
-        // proxy all requests starting with /api to jsonplaceholder
-        '/api': {
-          target: 'http://localhost:3000',
-          changeOrigin: true,
+    devServer: isDockerEnv
+      ? {
+          port: 3000,
+          open: false, // opens browser window automatically
+        }
+      : {
+          // https: true
+          open: true, // opens browser window automatically
+          proxy: {
+            // proxy all requests starting with /api to jsonplaceholder
+            '/api': {
+              target: 'http://localhost:3000',
+              changeOrigin: true,
+            },
+          },
         },
-      },
-    },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
