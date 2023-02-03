@@ -39,7 +39,7 @@ function toggleLeftDrawer() {
         <q-item to="/login" v-if="!isAuth">
           <q-item-label>Login</q-item-label>
         </q-item>
-        <q-item to="/profile" v-if="isAuth">
+        <q-item to="/user/profile" v-if="isAuth">
           <q-item-label>Profile</q-item-label>
         </q-item>
       </q-list>

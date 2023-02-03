@@ -10,7 +10,7 @@ async function onSubmit() {
   try {
     const res = await form.submit();
     await useAuthStore().setToken(res.data.accessToken);
-    $router.push('/profile');
+    $router.push('/user/profile');
   } catch (error) {
     console.log(error);
   }

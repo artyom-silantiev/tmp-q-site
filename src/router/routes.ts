@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+import { AuthGuard, NotAuthGuard } from './guards';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -6,13 +7,34 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
-        path: '', component: () => import('pages/PageIndex.vue'),
-      }, {
-        path: 'login', component: () => import('pages/guest/LoginPage.vue'),
-      }, {
-        path: 'profile', component: () => import('pages/user/ProfilePage.vue'),
-      }
+        path: '',
+        component: () => import('pages/PageIndex.vue'),
+      },
+      {
+        path: 'login',
+        component: () => import('pages/guest/LoginPage.vue'),
+        meta: {
+          guards: [NotAuthGuard()],
+        },
+      },
+      {
+        path: 'profile',
+        component: () => import('pages/user/ProfilePage.vue'),
+      },
     ],
+  },
+  {
+    path: '/user',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: 'profile',
+        component: () => import('pages/user/ProfilePage.vue'),
+      },
+    ],
+    meta: {
+      guards: [AuthGuard()],
+    },
   },
 
   // Always leave this as last one,

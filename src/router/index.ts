@@ -4,6 +4,8 @@ import {
   createRouter,
   createWebHashHistory,
   createWebHistory,
+  RouteLocationNormalized,
+  Router,
 } from 'vue-router';
 
 import routes from './routes';
@@ -20,9 +22,11 @@ import routes from './routes';
 export default route(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
-    : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory);
+    : process.env.VUE_ROUTER_MODE === 'history'
+    ? createWebHistory
+    : createWebHashHistory;
 
-  const Router = createRouter({
+  const router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
 
@@ -32,5 +36,26 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  return Router;
+  router.beforeEach((to, from) => {
+    const guards = getGuards(to);
+
+    for (const guard of guards) {
+      guard(router);
+    }
+  });
+
+  return router;
 });
+
+function getGuards(to: RouteLocationNormalized) {
+  const guards = [] as ((router: Router) => void)[];
+
+  for (const route of to.matched) {
+    if (route.meta && route.meta.guards) {
+      const routeGuards = route.meta.guards as [];
+      routeGuards.forEach((rg) => guards.push(rg));
+    }
+  }
+
+  return guards;
+}
